@@ -1,0 +1,19 @@
+{
+  "name": "react-experiment",
+  "version": "0.1.0",
+  "description": "React.js Experiment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mickvangelderen/react-experiment.git"
+  },
+  "author": "Mick van Gelderen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mickvangelderen/react-experiment/issues"
+  },
+  "homepage": "https://github.com/mickvangelderen/react-experiment#readme"
+}
