@@ -7,7 +7,7 @@ var vinylSourceStream = require('vinyl-source-stream')
 
 var mode = process.env.NODE_ENV
 
-gulp.task('js', ['clean'], function() {
+gulp.task('js', ['js:clean'], function() {
 	var transforms = [ babelify ]
 	if (mode === 'production') transforms.push(uglifyify)
 	var bundler = browserify({
