@@ -1,5 +1,8 @@
-import A from './a'
-import B from './b'
+document.addEventListener('DOMContentLoaded', function() {
+	function render(component, options = {}) {
+		var element = document.getElementById('root');
+		React.render(component, element);
+	}
 
-console.log('A:', A)
-console.log('B:', B)
+	render(<p>Welcome!</p>)
+})

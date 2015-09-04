@@ -1,0 +1,17 @@
+{
+  "name": "react-experiment",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mickvangelderen/react-experiment",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "react": "~0.13.3"
+  }
+}
