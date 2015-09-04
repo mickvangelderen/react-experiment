@@ -4,6 +4,7 @@
   "description": "React.js Experiment",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,26 @@
   "bugs": {
     "url": "https://github.com/mickvangelderen/react-experiment/issues"
   },
-  "homepage": "https://github.com/mickvangelderen/react-experiment#readme"
+  "homepage": "https://github.com/mickvangelderen/react-experiment#readme",
+  "devDependencies": {
+    "babel-core": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-less": "^3.0.3",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "morgan": "^1.6.1",
+    "uglifyify": "^3.0.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "gulp-browserify": "^0.5.1"
+  }
 }
