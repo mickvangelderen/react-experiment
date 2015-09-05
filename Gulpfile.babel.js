@@ -12,64 +12,64 @@ gulp.task('js', ['js:clean'], function() {
 	var transforms = [ babelify ]
 	if (mode === 'production') transforms.push(uglifyify)
 	var bundler = browserify({
-		entries: './main.js',
-		basedir: './client',
+		entries: 'main.js',
+		basedir: 'interface/',
 		debug: mode !== 'production',
 		transform: transforms
 	})
 	return bundler.bundle()
-		.pipe(vinylSourceStream('./main.js'))
-		.pipe(gulp.dest('serve/'))
+		.pipe(vinylSourceStream('main.js'))
+		.pipe(gulp.dest('client/'))
 })
 
 gulp.task('js:clean', function() {
-	return gulp.src('serve/**/*.js')
+	return gulp.src('client/**/*.js')
 		.pipe(plugins.rimraf())
 })
 
 gulp.task('js:watch', function() {
-	return gulp.watch('./client/**/*.js', ['js'])
+	return gulp.watch('interface/**/*.js', ['js'])
 })
 
 gulp.task('less', ['less:clean'], function() {
-	gulp.src('./client/main.less')
+	gulp.src('interface/main.less')
 		.pipe(plugins.plumber())
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.less())
 		.pipe(plugins.sourcemaps.write())
-		.pipe(gulp.dest('./serve/'))
+		.pipe(gulp.dest('client/'))
 })
 
 gulp.task('less:clean', function() {
-	return gulp.src('serve/**/*.css')
+	return gulp.src('client/**/*.css')
 		.pipe(plugins.rimraf())
 })
 
 gulp.task('less:watch', function() {
-	return gulp.watch('./client/**/*.less', ['less'])
+	return gulp.watch('interface/**/*.less', ['less'])
 })
 
 gulp.task('jade', ['jade:clean'], function() {
-	gulp.src('./client/**/*.jade')
+	gulp.src('interface/**/*.jade')
 		.pipe(plugins.plumber())
 		.pipe(plugins.jade({
 			pretty: mode !== 'production'
 		}))
-		.pipe(gulp.dest('./serve/'))
+		.pipe(gulp.dest('client/'))
 })
 
 gulp.task('jade:watch', function() {
-	return gulp.watch('./client/**/*.jade', ['jade'])
+	return gulp.watch('interface/**/*.jade', ['jade'])
 })
 
 gulp.task('jade:clean', function() {
-	return gulp.src('serve/**/*.html')
+	return gulp.src('client/**/*.html')
 		.pipe(plugins.rimraf())
 })
 
-gulp.task('livereload:watch', function() {
+gulp.task('livereload', function() {
 	plugins.livereload.listen()
-	gulp.watch('serve/**/*').on('change', plugins.livereload.changed)
+	gulp.watch('client/**/*').on('change', plugins.livereload.changed)
 })
 
 gulp.task('serve', function() {
@@ -102,7 +102,7 @@ gulp.task('serve', function() {
 
 gulp.task('clean', ['js:clean', 'less:clean', 'jade:clean'])
 
-gulp.task('watch', ['default', 'js:watch', 'less:watch', 'jade:watch', 'livereload:watch'])
+gulp.task('watch', ['default', 'js:watch', 'less:watch', 'jade:watch', 'livereload'])
 
 gulp.task('default', ['js', 'less', 'jade'])
 

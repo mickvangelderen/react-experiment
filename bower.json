@@ -11,7 +11,9 @@
     "tests"
   ],
   "dependencies": {
+    "es5-shim": "~4.1.11",
     "jquery": "~2.1.4",
+    "normalize-css": "normalize.css#~3.0.3",
     "react": "~0.13.3"
   }
 }

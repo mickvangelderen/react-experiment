@@ -3,9 +3,13 @@ doctype
 html
 	head
 		title Hello World
+		script(src="external/es5-shim/es5-shim.js")
+		script(src="external/babel-core/browser-polyfill.js")
 		script(src="external/jquery/dist/jquery.js")
 		script(src="external/react/react.js")
 		script(src="/main.js")
+
+		link(href="external/normalize-css/normalize.css")
 		link(href="/main.css" rel="stylesheet")
 
 	body#content !{ content }
