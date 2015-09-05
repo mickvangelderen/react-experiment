@@ -4,6 +4,7 @@ var gulp = require('gulp')
 var plugins = require('gulp-load-plugins')()
 var uglifyify = require('uglifyify')
 var vinylSourceStream = require('vinyl-source-stream')
+var spawn = require('cross-spawn')
 
 var mode = process.env.NODE_ENV
 
@@ -71,8 +72,44 @@ gulp.task('livereload:watch', function() {
 	gulp.watch('serve/**/*').on('change', plugins.livereload.changed)
 })
 
+gulp.task('serve', function() {
+	let server = null
+	let state = 'STOPPED'
+	function restartServer() {
+		switch (state) {
+			case 'STOPPED':
+				server = spawn('babel-node', ['server/server.js'])
+				server.stdout.pipe(process.stdout)
+				server.stderr.pipe(process.stderr)
+				state = 'STARTED'
+				break
+			case 'STARTED':
+				kill(server).on('exit', function() {
+					state = 'STOPPED'
+					restartServer()
+				})
+				state = 'STOPPING'
+				break
+			case 'STOPPING':
+				// Do nothing.
+				break
+		}
+	}
+	gulp.watch(['client/**/*.js', 'server/**/*.js'])
+		.on('change', restartServer)
+	restartServer()
+})
+
 gulp.task('clean', ['js:clean', 'less:clean', 'jade:clean'])
 
 gulp.task('watch', ['default', 'js:watch', 'less:watch', 'jade:watch', 'livereload:watch'])
 
 gulp.task('default', ['js', 'less', 'jade'])
+
+function kill(job) {
+	if (/win/.test(process.platform)) {
+		return spawn('taskkill', ['/pid', job.pid, '/f', '/t'])
+	} else {
+		return job.kill()
+	}
+}

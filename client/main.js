@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-	function render(component, options = {}) {
-		var element = document.getElementById('root');
-		React.render(component, element);
-	}
+	// function render(component, options = {}) {
+	// 	var element = document.getElementById('content');
+	// 	React.render(component, element);
+	// }
 
-	render(<p>Welcome!</p>)
+	// render(<p>Welcome!</p>)
 })
